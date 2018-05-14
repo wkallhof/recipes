@@ -1,0 +1,38 @@
+<%- include("layout-top", {title: recipe.title}); %>
+
+<main role="main" class="col-md-8 offset-md-2">
+    <h2><%= recipe.title %></h2>
+
+    <h3>Description</h3>
+    <p><%- recipe.description %></p>
+
+    <% if(recipe.ingredientGroups){ %>
+    <h3>Ingredients</h3>
+    <ul>
+        <% recipe.ingredientGroups.forEach((group) => { %>
+            <li><%= group.title %>
+            
+            <% if(group.ingredients){ %>
+                <ul>
+                    <% group.ingredients.forEach((ingredient) => { %>
+                    <li><%= ingredient.text %></li>
+                    <% });%>
+                </ul>
+            <% } %>
+
+            </li>
+        <% });%>
+    </ul>
+    <% } %>
+
+    <% if(recipe.directions){ %>
+    <h3>Directions</h3>
+    <ul>
+        <% recipe.directions.forEach((direction) => { %>
+            <li><%= direction.text %></li>
+        <% });%>
+    </ul>
+    <% } %>
+</main>
+
+<%- include("layout-bottom"); %>

@@ -1,0 +1,10 @@
+<%# Model : Error %>
+
+<%- include("layout-top", {title: error.status}); %>
+
+<div>
+    <h2><%= error.status %></h2>
+    <p><%= error.message %></p>
+</div>
+
+<%- include("layout-bottom"); %>

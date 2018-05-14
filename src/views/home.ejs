@@ -1,0 +1,16 @@
+<%- include("layout-top", {title: title}); %>
+
+<main role="main" class="col-md-8 offset-md-2">
+    <h2>Recipes</h2>
+    <ul>
+    <% recipes.forEach((recipe) => {%>
+        <li><a href="<%= recipe.slug %>"><%= recipe.title%></a></li>
+    <%});%>
+    </ul>
+</main>
+
+
+
+
+
+<%- include("layout-bottom"); %>

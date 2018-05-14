@@ -1,0 +1,53 @@
+<%- include("layout-top", {title: "Edit"}); %>
+
+<main role="main" class="col-md-8 offset-md-2">
+
+    <div class="row">
+        <div class="col-md-8">
+            <form method="POST" action="/<%= recipe.slug %>" data-controller="edit">
+                <div class="card" data-controller="radar">
+                    <h5 class="card-header">
+                        Edit
+                    </h5>
+                    <div class="card-body">
+                        <%# SLUG %>
+                        <input type="hidden" name="slug" value="<%= recipe.slug %>"/>
+                        
+                        <%# Title %>
+                        <div class="form-group">
+                            <label for="title" class="bmd-label-floating">Title</label>
+                            <input type="text" class="form-control" name="title" value="<%= recipe.title %>">
+                        </div>
+
+                         <%# Description %>
+                        <div class="form-group">
+                            <label for="description" class="bmd-label-floating">Description</label>
+                            <textarea class="form-control" name="description" ><%= recipe.description %></textarea>
+                        </div>
+
+                        <%# Ingredient Groups %>
+                        <div class="form-group">
+                            <label for="ingredientGroups" class="bmd-label-floating">Ingredients</label>
+                            <textarea class="form-control ingredients" name="ingredientGroups" ><%= recipe.ingredientGroups %></textarea>
+                        </div>
+
+                        <%# Directions %>
+                        <div class="form-group">
+                            <label for="directions" class="bmd-label-floating">Directions</label>
+                            <textarea class="form-control" name="directions" ><%= recipe.directions %></textarea>
+                        </div>
+                        
+                    </div>
+                    <div class="card-footer text-muted">
+                        <button type="submit" class="btn btn-raised btn-secondary">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div> 
+
+</main>
+
+<%- include("layout-bottom"); %>
