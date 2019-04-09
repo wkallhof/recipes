@@ -25,6 +25,18 @@
                             <textarea class="form-control" name="description" ><%= recipe.description %></textarea>
                         </div>
 
+                        <%# Source %>
+                        <div class="form-group">
+                            <label for="source" class="bmd-label-floating">Source</label>
+                            <input type="text" class="form-control" name="source" value="<%= recipe.source %>">
+                        </div>
+
+                        <%# Image Url %>
+                        <div class="form-group">
+                            <label for="imageUrl" class="bmd-label-floating">Image URL</label>
+                            <input type="text" class="form-control" name="imageUrl" value="<%= recipe.imageUrl %>">
+                        </div>
+
                         <%# Ingredient Groups %>
                         <div class="form-group">
                             <label for="ingredientGroups" class="bmd-label-floating">Ingredients</label>

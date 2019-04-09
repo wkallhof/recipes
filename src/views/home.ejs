@@ -1,12 +1,29 @@
 <%- include("layout-top", {title: title}); %>
 
 <main role="main" class="col-md-8 offset-md-2">
-    <h2>Recipes</h2>
-    <ul>
-    <% recipes.forEach((recipe) => {%>
-        <li><a href="<%= recipe.slug %>"><%= recipe.title%></a></li>
-    <%});%>
-    </ul>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row">
+                <% recipes.forEach((recipe) => {%>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="card-img-top" src="<%= recipe.imageUrl %>">
+                            <h5 class="card-title"><%= recipe.title %></h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                            <p class="card-text"><%= recipe.description %></p>
+                            <a href="/<%= recipe.slug %>" class="card-link">View</a>
+                            <a href="/<%= recipe.slug %>/edit" class="card-link">Edit</a>
+                        </div>
+                    </div>
+                </div>
+                <%});%>
+            </div>
+        </div>
+    </div>
+
 </main>
 
 

@@ -120,6 +120,8 @@ export class RecipeController extends BaseController {
             slug: editModel.slug,
             title: editModel.title,
             description: editModel.description,
+            source: editModel.source,
+            imageUrl: editModel.imageUrl,
             directions: this.mapDirectionStringToDirectionList(editModel.directions),
             ingredientGroups: this.mapIngredientGroupsStringToList(editModel.ingredientGroups)
         })
@@ -130,6 +132,8 @@ export class RecipeController extends BaseController {
             slug: recipe.slug,
             title: recipe.title,
             description: recipe.description,
+            source: recipe.source,
+            imageUrl: recipe.imageUrl,
             directions: this.mapDirectionListToDirectionString(recipe.directions),
             ingredientGroups: this.mapIngredientGroupsListToString(recipe.ingredientGroups)
         });
@@ -164,12 +168,12 @@ export class RecipeController extends BaseController {
     private mapDirectionStringToDirectionList(directionString: string): Array<DirectionStep>{
         if (directionString == null || directionString.length <= 0) return new Array<DirectionStep>();
 
-        return directionString.split("\n").map((val: string) => new DirectionStep({ text: val }));
+        return directionString.split("#").filter((val) => val.length > 0).map((val: string) => new DirectionStep({ text: val.trim() }));
     }
 
     private mapDirectionListToDirectionString(directionList: Array<DirectionStep>): string{
         if (directionList == null) return "";
 
-        return directionList.map((step: DirectionStep) => step.text).join("\n")
+        return directionList.map((step: DirectionStep) => `# ${step.text}`).join("\n")
     }
 }

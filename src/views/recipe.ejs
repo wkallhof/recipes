@@ -1,38 +1,67 @@
 <%- include("layout-top", {title: recipe.title}); %>
 
 <main role="main" class="col-md-8 offset-md-2">
-    <h2><%= recipe.title %></h2>
 
-    <h3>Description</h3>
-    <p><%- recipe.description %></p>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" data-controller="radar">
 
-    <% if(recipe.ingredientGroups){ %>
-    <h3>Ingredients</h3>
-    <ul>
-        <% recipe.ingredientGroups.forEach((group) => { %>
-            <li><%= group.title %>
+                <%# TITLE %>
+                <h2 class="card-header">
+                    <%= recipe.title %>
+                </h2>
+                <div class="card-body">
+
+                    <% if(recipe.source) { %>
+                    <h6>Source : <%- recipe.source %></h6>
+                    <% } %>
+
+                    <% if(recipe.imageUrl) { %>
+                    <img src="<%= recipe.imageUrl %>"/>
+                    <% } %>
+
+                    <%# DESCRIPTION %>
+                    <h3>Description</h3>
+                    <p><%- recipe.description %></p>
             
-            <% if(group.ingredients){ %>
-                <ul>
-                    <% group.ingredients.forEach((ingredient) => { %>
-                    <li><%= ingredient.text %></li>
-                    <% });%>
-                </ul>
-            <% } %>
+                    <%# INGREDIENTS %>
+                    <% if(recipe.ingredientGroups){ %>
+                    <h3>Ingredients</h3>
+                    <ul>
+                        <% recipe.ingredientGroups.forEach((group) => { %>
+                            <li><%= group.title %>
+                            
+                            <% if(group.ingredients){ %>
+                                <ul>
+                                    <% group.ingredients.forEach((ingredient) => { %>
+                                    <li><%= ingredient.text %></li>
+                                    <% });%>
+                                </ul>
+                            <% } %>
+                
+                            </li>
+                        <% });%>
+                    </ul>
+                    <% } %>
+                
+                    <%# DIRECTIONS %>
+                    <% if(recipe.directions){ %>
+                    <h3>Directions</h3>
+                    <ol>
+                        <% recipe.directions.forEach((direction) => { %>
+                            <li><%= direction.text %></li>
+                        <% });%>
+                    </ul>
+                    <% } %>
 
-            </li>
-        <% });%>
-    </ul>
-    <% } %>
+                </div>
+                <div class="card-footer text-muted">
+                    <a href="<%= recipe.slug %>/edit" class="btn btn-raised btn-secondary">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div> 
 
-    <% if(recipe.directions){ %>
-    <h3>Directions</h3>
-    <ul>
-        <% recipe.directions.forEach((direction) => { %>
-            <li><%= direction.text %></li>
-        <% });%>
-    </ul>
-    <% } %>
 </main>
 
 <%- include("layout-bottom"); %>
